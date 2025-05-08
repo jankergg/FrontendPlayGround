@@ -1,4 +1,4 @@
-import { FC, useState , useMemo, useEffect} from "react";
+import { FC, useState , useMemo, useEffect, TransitionEvent} from "react";
 import "./ImageCarousel.css";
 
 interface Image {
@@ -39,21 +39,22 @@ const getAnimateClasses = (
     exit: "slide-right",
   };
 };
-function clsx(...classnames: Array<unknown>) {
-  return classnames.filter(Boolean).join(" ");
-}
+
 function preLoadImage(src: string) {
   const img = new Image();
   img.src = src;
 }
-// TODO: improve painting by add prev/after image
+
 export const ImageCarousel: FC<ImageCarouselProps> = ({ images }) => {
   const [isTransiting, setIsTransiting] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState<number | null>(null);
   const maxIndex = images.length - 1;
 
-  const { enter, exit } = useMemo(()=>getAnimateClasses(activeIndex, nextIndex, maxIndex), [activeIndex, maxIndex, nextIndex]);
+  const { enter, exit } = useMemo(
+    () => getAnimateClasses(activeIndex, nextIndex, maxIndex),
+    [activeIndex, maxIndex, nextIndex]
+  );
 
   const onPrev = () => {
     setNextIndex((activeIndex + maxIndex) % (maxIndex + 1));
@@ -67,23 +68,17 @@ export const ImageCarousel: FC<ImageCarouselProps> = ({ images }) => {
       setIsTransiting(true);
     });
   };
-  const onTransitionEnd = () => {
-    setActiveIndex(nextIndex!);
-    setIsTransiting(false);
-    setNextIndex(null);
+  const onTransitionEnd = (e: TransitionEvent) => {
+    if (e.propertyName === "transform") {
+      setActiveIndex(nextIndex!);
+      setIsTransiting(false);
+      setNextIndex(null);
+    }
   };
 
   const activeImage = images[activeIndex];
   const nextImage = nextIndex !== null ? images[nextIndex] : null;
-  const nextSlider = nextImage && (
-    <div
-      className={clsx("image-carousel--slider", !isTransiting && enter)}
-      key={nextImage.src}
-      onTransitionEnd={onTransitionEnd}
-    >
-      <img src={nextImage.src} alt={nextImage.alt} />
-    </div>
-  );
+
   useEffect(() => {
     const prevIndex = (activeIndex + maxIndex) % (maxIndex + 1);
     const nextIndex = (activeIndex + 1) % (maxIndex + 1);
@@ -94,29 +89,34 @@ export const ImageCarousel: FC<ImageCarouselProps> = ({ images }) => {
   }, [activeIndex, images, maxIndex]);
 
   return (
-    <div className="image-carousel">
+    <div className="image-carousel" onTransitionEnd={onTransitionEnd}>
       <button
         type="button"
         className="image-carousel--nav prev"
         name="prev"
         onClick={onPrev}
-        disabled={isTransiting}
       >
         Prev
       </button>
       <div
-        className={clsx("image-carousel--slider", isTransiting && exit)}
+        className={`image-carousel--slider ${isTransiting && exit}`}
         key={activeImage.src}
       >
         <img src={activeImage.src} alt={activeImage.alt} />
       </div>
-      {nextSlider}
+      <div
+        className={`image-carousel--slider ${!isTransiting && enter} ${
+          !nextImage && "hidden"
+        }`}
+        key={nextImage?.src}
+      >
+        <img src={nextImage?.src} alt={nextImage?.alt} />
+      </div>
       <button
         type="button"
         className="image-carousel--nav next"
         name="next"
         onClick={onNext}
-        disabled={isTransiting}
       >
         Next
       </button>
