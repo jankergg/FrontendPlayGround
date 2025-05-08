@@ -1,0 +1,55 @@
+.image-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-carousel--slider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.25s ease-in-out;
+    z-index: 1;
+}
+.image-loader{
+    height:0;
+    opacity: 0;
+    overflow: hidden;
+}
+.image-carousel--slider.slide-left {
+    transform: translateX(-100%);
+}
+
+.image-carousel--slider.slide-right {
+    transform: translateX(100%);
+}
+
+.image-carousel--slider img {
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    object-fit: cover;
+}
+
+.image-carousel--nav {
+    z-index: 9;
+    font-size: 9px;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.image-carousel--nav.prev {
+    left: 5px;
+}
+
+.image-carousel--nav.next {
+    left: unset;
+    right: 5px;
+}

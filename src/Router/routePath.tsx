@@ -1,5 +1,6 @@
 import ContentPage from "../Pages/ContentPage";
 import { SearchComponent } from "../Components/SearchComponent";
+import { ImageCarouselExample } from "../Components/ImageCarousel";
 import { DataTableExample } from "../Components/DataTable";
 
 export const paths = [
@@ -18,6 +19,15 @@ export const paths = [
     element: (
       <ContentPage name="DataTable">
         <DataTableExample />
+      </ContentPage>
+    ),
+  },
+  {
+    path: "/image-carousel",
+    name: "ImageCarousel",
+    element: (
+      <ContentPage name="ImageCarousel">
+        <ImageCarouselExample />
       </ContentPage>
     ),
   },
