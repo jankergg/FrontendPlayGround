@@ -2,6 +2,7 @@ import ContentPage from "../Pages/ContentPage";
 import { SearchComponent } from "../Components/SearchComponent";
 import { ImageCarouselExample } from "../Components/ImageCarousel";
 import { DataTableExample } from "../Components/DataTable";
+import { NestedCheckboxExample } from "../Components/NestedCheckbox/NestedCheckboxExample";
 
 export const paths = [
   {
@@ -28,6 +29,15 @@ export const paths = [
     element: (
       <ContentPage name="ImageCarousel">
         <ImageCarouselExample />
+      </ContentPage>
+    ),
+  },
+  {
+    path: "/nested-checkbox",
+    name: "NestedCheckbox",
+    element: (
+      <ContentPage name="NestedCheckbox">
+        <NestedCheckboxExample />
       </ContentPage>
     ),
   },

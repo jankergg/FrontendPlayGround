@@ -1,0 +1,11 @@
+.checkbox-list {
+    padding-left: 25px;
+}
+
+.checkbox-list li {
+    list-style-type: none;
+}
+
+.checkbox-list input[type="checkbox"]:indeterminate  {
+    background-color: bisque;
+}
