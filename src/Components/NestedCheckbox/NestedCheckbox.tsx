@@ -1,21 +1,10 @@
-import { FC, useRef, useState, useEffect } from "react";
+import { FC, useMemo } from "react";
 import { BaseCheckbox, BaseCheckBoxI, OnChangeEvent } from "./BaseCheckbox";
 import "./NestedCheckbox.css";
 
-const recursiveToggleCheck = (checked: boolean, children?: CheckBoxI[]) => {
-  if (!children) return;
-  for (const cd of children) {
-    if (cd.children) {
-      recursiveToggleCheck(checked, cd.children);
-    } else {
-      cd.checked = checked;
-    }
-  }
-};
-
-type OnChangePayload = {
+export type OnChangePayload = {
   id: string;
-  checked: boolean;
+  checked: BaseCheckBoxI["checked"];
   children?: CheckBoxI[];
 };
 export type OnChangeChildEvent = (data: OnChangePayload) => void;
@@ -24,6 +13,21 @@ export interface CheckBoxI extends BaseCheckBoxI {
   children?: CheckBoxI[];
   onChange: (data: OnChangePayload) => void;
 }
+
+const recursiveToggleCheck = (checked: boolean, state: OnChangePayload) => {
+  state.checked = checked;
+  if (!state.children) return;
+  for (const child of state.children) {
+    recursiveToggleCheck(checked, child);
+  }
+};
+
+const isIndeterminate = (children: CheckBoxI["children"]) => {
+  if (!children?.length) return false;
+  const unchecked = children.filter((item) => !item.checked);
+  return unchecked.length > 0 && unchecked.length < children.length;
+};
+
 export const NestedCheckbox: FC<CheckBoxI> = ({
   id,
   name,
@@ -31,35 +35,25 @@ export const NestedCheckbox: FC<CheckBoxI> = ({
   children,
   onChange,
 }) => {
-  const state = useRef<OnChangePayload>({ id, checked, children });
-  const [indeterminate, setIndeterminate] = useState(false);
-  useEffect(() => {
-    state.current.checked = checked;
-    state.current.children = children;
-  }, [checked, children]);
+  const state: OnChangePayload = { id, checked, children: children?.slice() };
+  const indeterminate = useMemo(() => isIndeterminate(children), [children]);
 
   const handleChange: OnChangeEvent = ({ checked }) => {
-    recursiveToggleCheck(checked, state.current.children);
-    onChange({ ...state.current, checked });
+    recursiveToggleCheck(checked, state);
+    onChange({ ...state, checked });
   };
+
   const handleChildChange: OnChangeChildEvent = ({ id, checked, children }) => {
-    if (!state.current.children) {
-      return;
-    }
-    const changedItem = state.current!.children?.find((item) => item.id === id);
+    const changedItem = state.children?.find((item) => item.id === id);
     if (changedItem) {
       changedItem.checked = checked;
       if (changedItem.children?.length) {
         changedItem.children = children;
       }
-      const itemsCount = state.current.children.length;
-      const unchecked = state.current.children.filter((item) => !item.checked);
 
-      setIndeterminate(unchecked.length > 0 && unchecked.length < itemsCount);
-        
       onChange({
-        ...state.current,
-        checked,
+        ...state,
+        checked: isIndeterminate(children) ? "indeterminate" : checked,
       });
     }
   };

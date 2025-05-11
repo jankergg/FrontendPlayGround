@@ -1,9 +1,9 @@
 import { usePagination } from "./usePagination";
 import { useSortByColumn } from "./useSortByColumn";
 import { useMemo, useState, FC } from "react";
-import "./DataTable.css";
 import { DataEntity, Column } from "./DataTable.types";
 import { useDataFilters } from "./useDataFilters";
+import "./DataTable.css";
 
 export interface DataTableProps {
   data: DataEntity[];
@@ -37,20 +37,20 @@ export const DataTable: FC<DataTableProps> = ({ data, columns, pageSize }) => {
       columns.map(({ key, name, width, filter }) => (
         <th key={key} style={{ width }}>
           <p onClick={() => toggleColumn(key)}>{name}</p>
-          <p>
+          <div className="filter">
             {filter &&
               filter.map((filterBy) => (
-                <span key={filterBy}>
-                <label>{filterBy}</label>
-                <input
-                  name={`${filterBy}-input`}
-                  type="text"
-                  value={columnQueries.get(filterBy)}
-                  onChange={(e) => updateQueries(e.target.value, filterBy)}
-                />
-                </span>
+                <div key={filterBy} className="filter-item">
+                  <input
+                    placeholder={`filter by ${filterBy}`}
+                    className="filter-input"
+                    type="text"
+                    value={columnQueries.get(filterBy)}
+                    onChange={(e) => updateQueries(e.target.value, filterBy)}
+                  />
+                </div>
               ))}
-          </p>
+          </div>
         </th>
       )),
     [columnQueries, columns, toggleColumn]

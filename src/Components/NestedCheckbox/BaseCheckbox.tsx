@@ -1,5 +1,6 @@
 import { FC, ChangeEvent , useRef, useEffect} from "react";
 
+export type CheckType = boolean | 'indeterminate';
 export type OnChangePayload = {
   checked: boolean;
   id: string;
@@ -8,7 +9,7 @@ export type OnChangeEvent = ({ checked, id }: OnChangePayload) => void;
 export interface BaseCheckBoxI {
   id: string;
   name: string;
-  checked: boolean;
+  checked: CheckType;
   indeterminate?: boolean;
   onChange: OnChangeEvent;
 }
@@ -24,10 +25,10 @@ export const BaseCheckbox: FC<BaseCheckBoxI> = ({
     const checked = e.currentTarget.checked;
     onChange({ checked, id });
   };
-  useEffect(()=>{
-    if(ref.current)
-    ref.current.indeterminate = !!indeterminate;
-  },[indeterminate])
+  useEffect(() => {
+    if (ref.current) ref.current.indeterminate = !!indeterminate;
+  }, [indeterminate, checked]);
+
   return (
     <label htmlFor={name}>
       <input
@@ -35,7 +36,7 @@ export const BaseCheckbox: FC<BaseCheckBoxI> = ({
         name={name}
         type="checkbox"
         className="partial"
-        checked={checked}
+        checked={checked === "indeterminate" ? false : checked}
         onChange={handleChange}
       />
       {name}
