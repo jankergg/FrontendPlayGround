@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -123,23 +123,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">51x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">66x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,30 +168,30 @@ export interface BaseCheckBoxI {
   indeterminate?: boolean;
   onChange: OnChangeEvent;
 }
-export const BaseCheckbox: FC&lt;BaseCheckBoxI&gt; = ({
+export const BaseCheckbox: FC&lt;BaseCheckBoxI&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span></span>
   id,
   name,
   checked,
   indeterminate ,
   onChange,
 }) =&gt; {
-  const ref= useRef&lt;HTMLInputElement&gt;(null)
-  const handleChange = (e: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
-    const checked = e.currentTarget.checked;
-    onChange({ checked, id });
+  const ref= <span class="cstat-no" title="statement not covered" >useRef&lt;HTMLInputElement&gt;(null)</span>
+  const handleChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
+    const checked = <span class="cstat-no" title="statement not covered" >e.currentTarget.checked;</span>
+<span class="cstat-no" title="statement not covered" >    onChange({ checked, id });</span>
   };
-  useEffect(() =&gt; {
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (ref.current) ref.current.indeterminate = !!indeterminate;
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (ref.current) <span class="cstat-no" title="statement not covered" >ref.current.indeterminate = !!indeterminate;</span></span>
   }, [indeterminate, checked]);
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;label htmlFor={name}&gt;
       &lt;input
         ref={ref}
         name={name}
         type="checkbox"
         className="partial"
-        checked={checked === "indeterminate" ? <span class="branch-0 cbranch-no" title="branch not covered" >false </span>: checked}
+        checked={checked === "indeterminate" ? false : checked}
         onChange={handleChange}
       /&gt;
       {name}
@@ -205,7 +205,7 @@ export const BaseCheckbox: FC&lt;BaseCheckBoxI&gt; = ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-11T05:56:15.416Z
+                at 2025-05-18T17:18:28.098Z
             </div>
         <script src="../prettify.js"></script>
         <script>

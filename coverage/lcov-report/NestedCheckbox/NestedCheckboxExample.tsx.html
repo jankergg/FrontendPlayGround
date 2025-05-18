@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,17 +93,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -119,17 +119,17 @@
 import { NestedCheckbox , CheckBoxI, OnChangeChildEvent} from "./NestedCheckbox";
 import rawData from './data.json'
 &nbsp;
-export const NestedCheckboxExample = ()=&gt;{
-    const [data, setData] = useState(rawData as unknown as CheckBoxI[]);
-    const onChange: OnChangeChildEvent = ({ id, checked, children }) =&gt; {
-        setData((prev) =&gt;
-          prev.map((d) =&gt; (d.id === id ? { ...d, checked, children } : d))
+export const NestedCheckboxExample = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span>=&gt;{</span>
+    const [data, setData] = <span class="cstat-no" title="statement not covered" >useState(rawData as unknown as CheckBoxI[]);</span>
+    const onChange: OnChangeChildEvent = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> id, checked, children }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        setData(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >          prev.map(<span class="fstat-no" title="function not covered" >(d</span>) =&gt; (<span class="cstat-no" title="statement not covered" >d.id === id ? { ...d, checked, children } : d)</span>)</span>
         );
     };
-    return (
+<span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;ul className='checkbox-list'&gt;
-        {data.map(({ id, name, checked, children }) =&gt; (
-          &lt;li key={id}&gt;
+        {data.map(<span class="fstat-no" title="function not covered" >({</span> id, name, checked, children }) =&gt; (
+<span class="cstat-no" title="statement not covered" >          &lt;li key={id}&gt;</span>
             &lt;NestedCheckbox
               id={id}
               name={name}
@@ -148,7 +148,7 @@ export const NestedCheckboxExample = ()=&gt;{
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-11T05:56:15.416Z
+                at 2025-05-18T17:18:28.098Z
             </div>
         <script src="../prettify.js"></script>
         <script>
