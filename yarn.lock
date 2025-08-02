@@ -977,6 +977,18 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@datastructures-js/heap@^4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@datastructures-js/heap/-/heap-4.3.3.tgz#824c10f092ab03180702f0dea8ce96227ffe50a8"
+  integrity sha512-UcUu/DLh/aM4W3C8zZfwxxm6/6FIZUlm3mcAXuNOCa6Aj4iizNvNXQyb8DjZQH2jKSQbMRyNlngP6TPimuGjpQ==
+
+"@datastructures-js/priority-queue@^6.3.3":
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/@datastructures-js/priority-queue/-/priority-queue-6.3.3.tgz#35277b58153258a4392c6cf766cd2b23a9040ab3"
+  integrity sha512-CIbUf0h4TPu1tHJ2gV4OTjwPkh7XZNb37u44bwoW6Py2vPdgaRUhFh3qFET6jvhyMNq/+ChWfOBRh+9s5WUtvA==
+  dependencies:
+    "@datastructures-js/heap" "^4.3.3"
+
 "@esbuild/aix-ppc64@0.25.3":
   version "0.25.3"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.25.3.tgz#014180d9a149cffd95aaeead37179433f5ea5437"

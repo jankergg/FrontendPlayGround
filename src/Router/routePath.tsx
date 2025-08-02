@@ -3,6 +3,7 @@ import { SearchComponent } from "../Components/SearchComponent";
 import { ImageCarouselExample } from "../Components/ImageCarousel";
 import { DataTableExample } from "../Components/DataTable";
 import { NestedCheckboxExample } from "../Components/NestedCheckbox/NestedCheckboxExample";
+import { BasicCalculator } from "../Components/Calculator";
 
 export const paths = [
   {
@@ -29,6 +30,15 @@ export const paths = [
     element: (
       <ContentPage name="ImageCarousel">
         <ImageCarouselExample />
+      </ContentPage>
+    ),
+  },
+  {
+    path: "/basic-calculator",
+    name: "BasicCalculator",
+    element: (
+      <ContentPage name="BasicCalculator">
+        <BasicCalculator />
       </ContentPage>
     ),
   },

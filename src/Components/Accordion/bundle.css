@@ -1,0 +1,36 @@
+.position-relative {
+    position: relative;
+}
+
+.carousel-container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.accordion {
+    margin-bottom: 20px;
+}
+
+.title-section {
+    font-weight: bold;
+    display: flex;
+    cursor: pointer;
+}
+
+.title-section .title {
+    flex: 1;
+}
+
+.expand-icon::after {
+    content: '\25BC';
+}
+
+.collapse-icon::after {
+    content: '\25B2';
+}
+
+.multi-select {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
